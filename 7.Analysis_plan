@@ -1,0 +1,63 @@
+
+library(DescTools)
+## CKD cohort
+## GFR < 60 for at least 3 months and had at least 1 visit within 1 year after opd or ipd visit
+## excluded: age < 18, GFR < 15, dialysis, KT at baseline
+## age at opd or ipd visit
+## outcome: one_year_death_st
+
+## CKD4 cohort
+## GFR < 60 then GFR < 30 and had at least 1 visit within 1 year after opd or ipd visit
+## excluded: age < 18, GFR < 15, dialysis, KT at baseline
+## age at opd or ipd visit
+## outcome: one_year_death_st
+
+## dialysis cohort
+## dialysis by ICD10 and had at least 1 visit within 1 year after opd or ipd visit
+## excluded: age < 18, KT at baseline
+## age at opd or ipd visit
+## outcome: one_year_death_st
+
+## CKD cohort
+
+ckd_opd_cohort$age <- as.numeric(ckd_opd_cohort$opd_visit_date - ckd_opd_cohort$birth_date)/ 365.25
+ckd_opd_cohort$sex <- as.factor(ckd_opd_cohort$sex)
+ckd_opd_cohort$race_ethnicity <- as.factor(ckd_opd_cohort$race_ethnicity)
+
+model0 <- glm(one_year_death_st~ age + sex + race_ethnicity, data = ckd_opd_cohort, family = binomial)
+summary(model0)
+exp(coef(model0))
+Cstat(model0)
+
+
+model1 <- glm(one_year_death_st~ age + sex + race_ethnicity + opd_elixhauser_index, data = ckd_opd_cohort, family = binomial)
+summary(model1)
+exp(coef(model1))
+Cstat(model1)
+
+model2 <- glm(one_year_death_st~ age + sex + race_ethnicity + opd_charlson_index, data = ckd_opd_cohort, family = binomial)
+summary(model2)
+exp(coef(model2))
+Cstat(model2)
+
+
+ckd_ipd_cohort$age <- as.numeric(ckd_ipd_cohort$ipd_visit_date - ckd_ipd_cohort$birth_date)/ 365.25
+ckd_ipd_cohort$sex <- as.factor(ckd_ipd_cohort$sex)
+ckd_ipd_cohort$race_ethnicity <- as.factor(ckd_ipd_cohort$race_ethnicity)
+
+model0 <- glm(one_year_death_st~ age + sex + race_ethnicity, data = ckd_ipd_cohort, family = binomial)
+summary(model0)
+exp(coef(model0))
+Cstat(model0)
+
+
+model1 <- glm(one_year_death_st~ age + sex + race_ethnicity + ipd_elixhauser_index, data = ckd_ipd_cohort, family = binomial)
+summary(model1)
+exp(coef(model1))
+Cstat(model1)
+
+model2 <- glm(one_year_death_st~ age + sex + race_ethnicity + ipd_charlson_index, data = ckd_ipd_cohort, family = binomial)
+summary(model2)
+exp(coef(model2))
+Cstat(model2)
+
