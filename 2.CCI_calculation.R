@@ -1,10 +1,10 @@
 
-ckd_opd_cci <- read.csv("ckd_op_cci.csv");
-ckd_ipd_cci <- read.csv("ckd_ip_cci.csv");
-ckd4_opd_cci <- read.csv("ckd4_op_cci.csv");
-ckd4_ipd_cci <- read.csv("ckd4_ip_cci.csv");
-dialysis_opd_cci <- read.csv("dialysis_op_cci.csv");
-dialysis_ipd_cci <- read.csv("dialysis_ip_cci.csv");
+ckd_opd_cci <- read.csv("ckd_opd_cci.csv");
+ckd_ipd_cci <- read.csv("ckd_ipd_cci.csv");
+ckd4_opd_cci <- read.csv("ckd4_opd_cci.csv");
+ckd4_ipd_cci <- read.csv("ckd4_ipd_cci.csv");
+dialysis_opd_cci <- read.csv("dialysis_opd_cci.csv");
+dialysis_ipd_cci <- read.csv("dialysis_ipd_cci.csv");
 
 calculate_charlson_index <- function(df, output_path) {
   df <- df %>%
@@ -41,3 +41,13 @@ ckd4_opd_cci_score <- calculate_charlson_index(ckd4_opd_cci)
 ckd4_ipd_cci_score <- calculate_charlson_index(ckd4_ipd_cci)
 dialysis_opd_cci_score <- calculate_charlson_index(dialysis_opd_cci)
 dialysis_ipd_cci_score <- calculate_charlson_index(dialysis_ipd_cci)
+
+#write.csv(ckd_opd_cci_score, "ckd_opd_cci_score.csv", row.names = FALSE)
+#write.csv(ckd_ipd_cci_score, "ckd_ipd_cci_score.csv", row.names = FALSE)
+#write.csv(ckd4_opd_cci_score, "ckd4_opd_cci_score.csv", row.names = FALSE)
+#write.csv(ckd4_ipd_cci_score, "ckd4_ipd_cci_score.csv", row.names = FALSE)
+#write.csv(dialysis_opd_cci_score, "dialysis_opd_cci_score.csv", row.names = FALSE)
+#write.csv(dialysis_ipd_cci_score, "dialysis_ipd_cci_score.csv", row.names = FALSE)
+
+
+
