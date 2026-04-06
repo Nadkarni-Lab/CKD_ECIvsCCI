@@ -5,12 +5,12 @@ library(dplyr);
 # Load
 # ===================================================================================================================
 
-ckd_opd_elix <- read.csv("ckd_op_elix.csv");
-ckd_ipd_elix <- read.csv("ckd_ip_elix.csv");
-ckd4_opd_elix <- read.csv("ckd4_op_elix.csv");
-ckd4_ipd_elix <- read.csv("ckd4_ip_elix.csv");
-dialysis_opd_elix <- read.csv("dialysis_op_elix.csv");
-dialysis_ipd_elix <- read.csv("dialysis_ip_elix.csv");
+ckd_opd_elix <- read.csv("ckd_opd_elix.csv");
+ckd_ipd_elix <- read.csv("ckd_ipd_elix.csv");
+ckd4_opd_elix <- read.csv("ckd4_opd_elix.csv");
+ckd4_ipd_elix <- read.csv("ckd4_ipd_elix.csv");
+dialysis_opd_elix <- read.csv("dialysis_opd_elix.csv");
+dialysis_ipd_elix <- read.csv("dialysis_ipd_elix.csv");
 
 # Function to calculate Elixhauser Index and Weighted Elixhauser Index
 calculate_elixhauser <- function(df) {
@@ -81,9 +81,16 @@ calculate_elixhauser <- function(df) {
   return(select(df, person_id, elixhauser_index, weight_elixhauser))
 }
 
-ckd_opd_elix_score <- calculate_elixhauser(ckd_op_elix)
-ckd_ipd_elix_score <- calculate_elixhauser(ckd_ip_elix)
-ckd4_opd_elix_score <- calculate_elixhauser(ckd4_op_elix)
-ckd4_ipd_elix_score <- calculate_elixhauser(ckd4_ip_elix)
-dialysis_opd_elix_score <- calculate_elixhauser(dialysis_op_elix)
-dialysis_ipd_elix_score <- calculate_elixhauser(dialysis_ip_elix)
+ckd_opd_elix_score <- calculate_elixhauser(ckd_opd_elix)
+ckd_ipd_elix_score <- calculate_elixhauser(ckd_ipd_elix)
+ckd4_opd_elix_score <- calculate_elixhauser(ckd4_opd_elix)
+ckd4_ipd_elix_score <- calculate_elixhauser(ckd4_ipd_elix)
+dialysis_opd_elix_score <- calculate_elixhauser(dialysis_opd_elix)
+dialysis_ipd_elix_score <- calculate_elixhauser(dialysis_ipd_elix)
+
+#write.csv(ckd_opd_elix, "ckd_opd_elixscore.csv", row.names = FALSE)
+#write.csv(ckd_ipd_elix, "ckd_ipd_elix_score.csv", row.names = FALSE)
+#write.csv(ckd4_opd_elix, "ckd4_opd_elix_score.csv", row.names = FALSE)
+#write.csv(ckd4_ipd_elix, "ckd4_ipd_elix_score.csv", row.names = FALSE)
+#write.csv(dialysis_opd_elix, "dialysis_opd_elix_score.csv", row.names = FALSE)
+#write.csv(dialysis_ipd_elix, "dialysis_ipd_elix_score.csv", row.names = FALSE)
