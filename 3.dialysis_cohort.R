@@ -2,7 +2,7 @@
 
 ## Dialysis outpatient cohort##
 
-dialysis_opd_cohort <- read.csv("dialysis_op.csv");
+dialysis_opd_cohort <- read.csv("dialysis_opd.csv");
 
 dialysis_opd_cohort <- inner_join(dialysis_opd_cohort,
                                  dialysis_opd_elix_score,
@@ -42,3 +42,4 @@ dialysis_ipd_cohort <- dialysis_ipd_cohort %>%
   )
 
 dialysis_ipd_cohort$ipd_visit_date <- as.Date(dialysis_ipd_cohort$ipd_visit_date, format = "%Y-%m-%d")
+
