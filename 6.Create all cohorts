@@ -4,13 +4,13 @@
 ##-----------------------------------------------------------------------------
 ## CKD ##
 
-ckd_demo1 <- read.csv("sample file_name1")
-ckd_demo2 <- read.csv("Sample file_name2")
-ckd_cr <- read.csv("all_ckd")
-ckd_opd_labs <- read.csv("OPD_labs.csv")
-ckd_ipd_labs <- read.csv("IPD_labs.csv")
-ckd_opd_vitals <- read.csv("OPD_vitals.csv")
-ckd_ipd_vitals <- read.csv("IPD_vitals.csv")
+ckd_demo1 <- read.csv("ckd_demo1.csv")
+ckd_demo2 <- read.csv("ckd_demo2.csv")
+ckd_cr <- read.csv("all_ckd.csv")
+ckd_opd_labs <- read.csv("baseline_ckd_opd_lab.csv")
+ckd_ipd_labs <- read.csv("baseline_ckd_ipd_lab.csv")
+ckd_opd_vitals <- read.csv("baseline_vital_opd_ckd.csv")
+ckd_ipd_vitals <- read.csv("baseline_vital_ipd_ckd.csv")
 ckd_visit_1y <- read.csv("ckd_visit_1year.csv")
 
 ckd_opd_cohort <- left_join(ckd_opd_cohort,
@@ -27,13 +27,12 @@ ckd_opd_cohort <- left_join(ckd_opd_cohort,
 ckd_opd_cohort <-left_join (ckd_opd_cohort, ckd_opd_labs, 'person_id')
 ckd_opd_cohort <- left_join (ckd_opd_cohort, ckd_opd_vitals, 'person_id')
 
-#Exclude patients with eGFR < 15ml/min
 ckd_opd_cohort <- filter(ckd_opd_cohort, GFR >= 15)
 ckd_opd_cohort <- ckd_opd_cohort %>% 
   filter(person_id %in% ckd_visit_1y$person_id)
 ckd_opd_cohort$birth_date <- as.Date(ckd_opd_cohort$birth_date, format = "%Y-%m-%d")
 
-#write.csv(ckd_opd_cohort,"sample filename_1")
+#write.csv(ckd_opd_cohort,"ckd_opd_alldata.csv")
 
 #CKD IPD cohort
 ckd_ipd_cohort <- left_join(ckd_ipd_cohort,
@@ -54,13 +53,13 @@ ckd_ipd_cohort <- ckd_ipd_cohort %>%
 
 ckd_ipd_cohort <- filter(ckd_ipd_cohort, GFR >= 15)
 ckd_ipd_cohort$birth_date <- as.Date(ckd_ipd_cohort$birth_date, format = "%Y-%m-%d")
-#write.csv(ckd_ipd_cohort, "sample_filename.csv")
+#write.csv(ckd_ipd_cohort, "ckd_ipd_alldata.csv")
 
 ## CKD4 ##
 
-ckd4_demo1 <- read.csv("ckd4_samplefile1.csv")
-ckd4_demo2 <- read.csv("ckd4_samplefile2.csv")
-ckd4_cr <- read.csv("ckd4_all.csv")
+ckd4_demo1 <- read.csv("ckd4_demo1.csv")
+ckd4_demo2 <- read.csv("ckd4_demo2.csv")
+ckd4_cr <- read.csv("all_ckd4.csv")
 ckd4_visit_1y <- read.csv("ckd4_visit_1year.csv")
 
 ckd4_opd_cohort <- left_join(ckd4_opd_cohort,
@@ -82,7 +81,7 @@ ckd4_opd_cohort <- ckd4_opd_cohort %>%
   filter(person_id %in% ckd4_visit_1y$person_id)
 ckd4_opd_cohort$birth_date <- as.Date(ckd4_opd_cohort$birth_date, format = "%Y-%m-%d")
 
-#write.csv(ckd4_opd_cohort, "sample_filename.csv")
+#write.csv(ckd4_opd_cohort, "ckd4_opd_alldata.csv")
 
 #CKD4 IPD cohort
 ckd4_ipd_cohort <- left_join(ckd4_ipd_cohort,
@@ -104,14 +103,14 @@ ckd4_ipd_cohort <- ckd4_ipd_cohort %>%
 ckd4_ipd_cohort <- filter(ckd4_ipd_cohort, GFR_4 >= 15)
 ckd4_ipd_cohort$birth_date <- as.Date(ckd4_ipd_cohort$birth_date, format = "%Y-%m-%d")
 
-#write.csv (ckd4_ipd_cohort, "sample_file name.csv")
+#write.csv (ckd4_ipd_cohort, "ckd4_ipd_alldata.csv")
 
 ##Dialysis##
 
-dialysis_demo1 <- read.csv("dialysis_sample_filename.csv")
-dialysis_demo2 <- read.csv("dialysis_sample_filename.csv")
-dialysis_opd_labs <- read.csv ("dialysis_labs_opd_sample.csv")
-dialysis_ipd_labs <- read.csv ("baseline_dialysis_ipd_sample.csv")
+dialysis_demo1 <- read.csv("dialysis_demo1.csv")
+dialysis_demo2 <- read.csv("dialysis_demo2.csv")
+dialysis_opd_labs <- read.csv ("baseline_dialysis_opd_lab.csv")
+dialysis_ipd_labs <- read.csv ("baseline_dialysis_ipd_lab.csv")
 dialysis_opd_vitals <- read.csv ("baseline_vital_opd_dialysis.csv")
 dialysis_ipd_vitals <- read.csv ("baseline_vital_ipd_dialysis.csv")
 dialysis_visit_1y <- read.csv("dialysis_visit_1year.csv")
@@ -131,7 +130,7 @@ dialysis_opd_cohort <- dialysis_opd_cohort %>%
 
 dialysis_opd_cohort$birth_date <- as.Date(dialysis_opd_cohort$birth_date, format = "%Y-%m-%d")
 
-#write.csv (dialysis_opd_cohort, "dialysis_sample_filename_opd.csv")
+#write.csv (dialysis_opd_cohort, "dialysis_opd_cohort_alldata.csv")
 
 
 dialysis_ipd_cohort <- left_join(dialysis_ipd_cohort,
@@ -150,16 +149,13 @@ dialysis_ipd_cohort$birth_date <- as.Date(dialysis_ipd_cohort$birth_date, format
 #write.csv(dialysis_ipd_cohort, "dialysis_ipd_alldata.csv")
 
 ## ---------------------------------------------------------------------
-## Death
+## 1 year death
 ## ---------------------------------------------------------------------
 
 ckd_opd_cohort$one_year_death_st <- ifelse(
   ckd_opd_cohort$death == 1 & (ckd_opd_cohort$death_date - ckd_opd_cohort$opd_visit_date <= 365.5),
   1, 0
 )
-
-
-
 
 
 
@@ -170,24 +166,16 @@ ckd_ipd_cohort$one_year_death_st <- ifelse(
 
 
 
-
-
 ## CKD4 ##
 ckd4_opd_cohort$one_year_death_st <- ifelse(
   ckd4_opd_cohort$death == 1 & (ckd4_opd_cohort$death_date - ckd4_opd_cohort$opd_visit_date <= 365.5),
   1, 0
 )
 
-
-
-
-
-
 ckd4_ipd_cohort$one_year_death_st <- ifelse(
   ckd4_ipd_cohort$death == 1 & (ckd4_ipd_cohort$death_date - ckd4_ipd_cohort$ipd_visit_date <= 365.5),
   1, 0
 )
-
 
 
 
@@ -199,9 +187,18 @@ dialysis_opd_cohort$one_year_death_st <- ifelse(
 )
 
 
-
 dialysis_ipd_cohort$one_year_death_st <- ifelse(
   dialysis_ipd_cohort$death == 1 & (dialysis_ipd_cohort$death_date - dialysis_ipd_cohort$ipd_visit_date <= 365.5),
   1, 0
 )
+
+
+
+
+#write.csv(ckd_opd_cohort, "C:/Users/takkak01/OneDrive - The Mount Sinai Hospital/elix_input/ckd_opd_cohort.csv", row.names = FALSE)
+#write.csv(ckd_ipd_cohort, "C:/Users/takkak01/OneDrive - The Mount Sinai Hospital/elix_input/ckd_ipd_cohort.csv", row.names = FALSE)
+#write.csv(ckd4_opd_cohort, "C:/Users/takkak01/OneDrive - The Mount Sinai Hospital/elix_input/ckd4_opd_cohort.csv", row.names = FALSE)
+#write.csv(ckd4_ipd_cohort, "C:/Users/takkak01/OneDrive - The Mount Sinai Hospital/elix_input/ckd4_ipd_cohort.csv", row.names = FALSE)
+#write.csv(dialysis_opd_cohort, "C:/Users/takkak01/OneDrive - The Mount Sinai Hospital/elix_input/dialysis_opd_cohort.csv", row.names = FALSE)
+#write.csv(dialysis_ipd_cohort, "C:/Users/takkak01/OneDrive - The Mount Sinai Hospital/elix_input/dialysis_ipd_cohort.csv", row.names = FALSE)
 
